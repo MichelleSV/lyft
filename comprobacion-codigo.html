@@ -2,6 +2,7 @@
 <html lang="es">
 	<head>
 		<title>Lyft</title>
+		<link rel="shortcut icon" href="img/lyft.ico">
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -21,9 +22,9 @@
 		  </div>
 		</nav>
 		<div class="container-fluid text-center">
-			<div class="input-group input-rdatos">
+			<div class="input-group input-rdatos centrar-padding">
 				<span class="input-group-addon" id="basic-addon1">LAB</span>
-				<input type="tel" class="input-codigo form-control" placeholder="Escribe tu código">
+				<input type="tel" maxlength="3" class="input-codigo form-control" id="input-codigo" placeholder="Escribe tu código">
 			</div>
 			<p>Escribe el código enviado a +51 <span id="num"></span></p>
 			<a id="codigo-comprobado"><button class="btn btn-default btn-lg btn-siguiente">Siguiente</button></a>

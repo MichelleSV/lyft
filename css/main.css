@@ -82,5 +82,8 @@
 }
 /*COMPROBACION CÓODIGO*/
 .input-codigo{
-	width: 30% !important;
+	width: 69% !important;
+}
+.centrar-padding{
+	padding-left: 20%;
 }
