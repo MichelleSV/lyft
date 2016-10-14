@@ -35,13 +35,25 @@ function generarCodigo(){
 }
 
 $("#codigo-comprobado").click(comprobarCodigo);
-$("#input-codigo").keypress(onKeydown);
+$(".input-codigo").keypress(onKeydown);
 function comprobarCodigo(){
-	var codigo = $("#input-codigo").val();
+	var codigo1 = $("#cod1").val();
+	var codigo2 = $("#cod2").val();
+	var codigo3 = $("#cod3").val();
+	var codigo = codigo1 + codigo2 + codigo3;
 	if(codigo === window.localStorage.getItem("numeroAleatorio")){
 			$("#codigo-comprobado").attr("href", "registro-datos.html");
 		} else {
 			$("#codigo-comprobado").removeAttr("href");
+			$(".input-codigo").val("");
+			$("#cod1").focus();
 		}
 }
 
+$(".input-codigo").keypress(onKeydown);
+$(".input-codigo").keydown(cambiarInput);
+function cambiarInput(){
+	if($(this).val().length == 1){
+		$(this).next().focus();
+	}
+}

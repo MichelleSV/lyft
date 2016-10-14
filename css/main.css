@@ -82,8 +82,22 @@
 }
 /*COMPROBACION CÓODIGO*/
 .input-codigo{
-	width: 69% !important;
+	width: 15%;
+	margin-right: 15px;
+	border-left: 0;
+	border-right: 0;
+	border-top: 0;
+	border-bottom: 2px gray solid;
+	font-size: 18px;
+	text-align: center;
+}
+.input-codigo:focus{
+	outline: none;
 }
 .centrar-padding{
-	padding-left: 20%;
+	padding: 0 21%;
+}
+.lab-codigo{
+	font-size: 18px;
+	padding-right: 20px;
 }
