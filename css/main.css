@@ -60,6 +60,13 @@
 #input-celular{
 	border-left: 0;
 }
+#input-celular:focus{
+	outline: none !important;
+	-webkit-box-shadow:none;
+	box-shadow: none;
+	border: 1px solid #CCCCCC;
+	border-left: 0;
+}
 /*REGISTRO DATOS*/
 .btn-siguiente{
 	border-radius: 0;
@@ -99,5 +106,5 @@
 }
 .lab-codigo{
 	font-size: 18px;
-	padding-right: 20px;
+	padding-right: 12px;
 }
