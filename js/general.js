@@ -9,7 +9,7 @@ function cargar(){
 
 function onKeypress(evento){
 	var ascii = evento.keyCode;
-	if((ascii>=48 && ascii<=57) || ascii==37 || ascii==39 || ascii<=8){
+	if((ascii>=48 && ascii<=57) || ascii==37 || ascii==39 || ascii==8){
 		return true;
 	} else{
 		return false;
@@ -36,7 +36,6 @@ function generarCodigo(){
 }
 
 $("#codigo-comprobado").click(comprobarCodigo);
-$(".input-codigo").keypress(onKeypress);
 function comprobarCodigo(){
 	var codigo1 = $(".input-codigo").eq(0).val();
 	var codigo2 = $(".input-codigo").eq(1).val();
@@ -52,13 +51,24 @@ function comprobarCodigo(){
 		}
 }
 
-$(".input-codigo").keypress(onkeyupCodigo);
-function onkeyupCodigo(evento){
+$(".input-codigo").keyup(onkeyupCodigo);
+$(".input-codigo").keydown(onKeydownCodigo);
+function onKeydownCodigo(evento){
 	var ascii = evento.keyCode;
-	if(ascii>=48 && ascii<=57){
+	var longitud = $(this).val().length;
+	if((ascii>=48 && ascii<=57  && longitud==0) || ascii==8){
+		return true;
+	} else{
+		return false;
+	}
+}
+function onkeyupCodigo(evento){
+	var longitud = $(this).val().length;
+	var ascii = evento.keyCode;
+	if(longitud==1){
 		$(this).next().focus();
 	}
-	else if(ascii==8){
+	if(ascii==8){
 		$(this).prev().focus();
 	}
 }
@@ -67,5 +77,7 @@ $("#reenviar-codigo").click(generarCodigo2);
 function generarCodigo2(){
 	window.localStorage.setItem("numeroAleatorio", Math.round(Math.random()*900)+99);
 	alert("LAB - " + window.localStorage.getItem("numeroAleatorio"));
+	$(".input-codigo").val("");
 	$(".input-codigo").eq(0).focus();
+
 }
