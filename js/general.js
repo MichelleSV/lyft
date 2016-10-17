@@ -84,17 +84,27 @@ var soloLetras = function(evento){
 		return true;
 	}
 }
-var maximoDatos = function(){
-	var nombre = $(".input-datos").eq(0).val();
-	var apellido = $(".input-datos").eq(1).val();
-	var nombreApellido = nombre+apellido;
+var maximoNombre = function(){
 	var cuadradoNegro = $("#cuadrado-negro");
-	if(nombreApellido.length>=20){
+	var nombre = $(".input-datos").eq(0).val();
+	if(nombre.length>=20){
+		cuadradoNegro.text("Ha excedido el máx de caracteres (20 máx)");
+		cuadradoNegro.removeClass("ocultar");
+		$(this).next().focus();
+		setTimeout(function(){ cuadradoNegro.addClass("ocultar"); }, 3000);
+	}
+
+}
+var maximoApellido = function(){
+	var cuadradoNegro = $("#cuadrado-negro");
+	var apellido = $(".input-datos").eq(1).val();
+	if(apellido.length>=20){
 		cuadradoNegro.text("Ha excedido el máx de caracteres (20 máx)");
 		cuadradoNegro.removeClass("ocultar");
 		$("#input-correo").focus();
-		setTimeout(function(){ cuadradoNegro.addClass("ocultar"); }, 3000)
+		setTimeout(function(){ cuadradoNegro.addClass("ocultar"); }, 3000);
 	}
+
 }
 var validarCorreo = function(){
 	var regexCorreo = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
@@ -104,7 +114,7 @@ var validarCorreo = function(){
 	var correo = $("#input-correo").val().length;
 	var validacionCorreo = $("#input-correo").val().match(regexCorreo);
 	if(validacionCorreo){
-		$("#registrarse").attr("href", "x.html");
+		$("#registrarse").attr("href", "ubicacion.html");
 	}
 	else if(!validacionCorreo){
 		$("#registrarse").removeAttr("href");
@@ -178,7 +188,8 @@ var cargar = function(){
 	$(".input-datos").eq(0).focus();
 	$(".input-datos").blur(mayusculas);
 	$(".input-datos").keypress(soloLetras);
-	$(".input-datos").keydown(maximoDatos);
+	$(".input-datos").eq(0).keydown(maximoNombre);
+	$(".input-datos").eq(1).keydown(maximoApellido);
 	$("#registrarse").click(validarCorreo);
 }
 $(document).ready(cargar);
