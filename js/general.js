@@ -1,13 +1,4 @@
-$(document).ready(cargar);
-function cargar(){
-	$("#input-celular").keypress(onKeypress);
-	$("#input-celular").keyup(onKeyup);
-	$("#num").text(window.localStorage.getItem("celular"));
-	$("#input-celular").focus();
-	$(".input-codigo").eq(0).focus();
-}
-
-function onKeypress(evento){
+var onKeypress = function(evento){
 	var ascii = evento.keyCode;
 	if((ascii>=48 && ascii<=57) || ascii==37 || ascii==39 || ascii==8){
 		return true;
@@ -15,18 +6,19 @@ function onKeypress(evento){
 		return false;
 	}
 }
-
-function onKeyup(evento){
+var cantDigCelular = function(){
+	var cuadradoNegro = $("#cuadrado-negro");
 	var longitud = $("#input-celular").val().length;
 		if (longitud == 9) {
 			$("#obtener-codigo").attr("href", "comprobacion-codigo.html");
 		} else {
+			cuadradoNegro.text("El celular debe tener 9 dígitos");
+			cuadradoNegro.removeClass("ocultar");
+			setTimeout(function(){ cuadradoNegro.addClass("ocultar"); }, 3000);
 			$("#obtener-codigo").removeAttr("href");
 		}
 }
-
-$("#obtener-codigo").click(generarCodigo);
-function generarCodigo(){
+var generarCodigo = function(){
 	var longitud = $("#input-celular").val().length;
 	if(longitud == 9){
 		window.localStorage.setItem("numeroAleatorio", Math.round(Math.random()*900)+99);
@@ -34,26 +26,24 @@ function generarCodigo(){
 		window.localStorage.setItem("celular", $("#input-celular").val());
 	}
 }
-
-$("#codigo-comprobado").click(comprobarCodigo);
-function comprobarCodigo(){
+var comprobarCodigo = function(){
 	var codigo1 = $(".input-codigo").eq(0).val();
 	var codigo2 = $(".input-codigo").eq(1).val();
 	var codigo3 = $(".input-codigo").eq(2).val();
 	var codigo = codigo1 + codigo2 + codigo3;
+	var cuadradoNegro = $("#cuadrado-negro");
 	if(codigo == window.localStorage.getItem("numeroAleatorio")){
 			$("#codigo-comprobado").attr("href", "registro-datos.html");
 		} else {
 			$("#codigo-comprobado").removeAttr("href");
-			alert("Código erróneo");
+			cuadradoNegro.text("Código erróneo");
+			cuadradoNegro.removeClass("ocultar");
 			$(".input-codigo").val("");
 			$(".input-codigo").eq(0).focus();
+			setTimeout(function(){ cuadradoNegro.addClass("ocultar"); }, 3000)
 		}
 }
-
-$(".input-codigo").keyup(onkeyupCodigo);
-$(".input-codigo").keydown(onKeydownCodigo);
-function onKeydownCodigo(evento){
+var onKeydownCodigo = function(evento){
 	var ascii = evento.keyCode;
 	var longitud = $(this).val().length;
 	if((ascii>=48 && ascii<=57  && longitud==0) || ascii==8){
@@ -62,7 +52,7 @@ function onKeydownCodigo(evento){
 		return false;
 	}
 }
-function onkeyupCodigo(evento){
+var onkeyupCodigo = function(evento){
 	var longitud = $(this).val().length;
 	var ascii = evento.keyCode;
 	if(longitud==1){
@@ -72,12 +62,123 @@ function onkeyupCodigo(evento){
 		$(this).prev().focus();
 	}
 }
-
-$("#reenviar-codigo").click(generarCodigo2);
-function generarCodigo2(){
+var generarCodigo2 = function(){
 	window.localStorage.setItem("numeroAleatorio", Math.round(Math.random()*900)+99);
 	alert("LAB - " + window.localStorage.getItem("numeroAleatorio"));
 	$(".input-codigo").val("");
 	$(".input-codigo").eq(0).focus();
-
+	$("#input-correo").focus();
 }
+var mayusculas = function(){
+	var valor = $(this).val();
+	var primeraLetraMayusc = valor.charAt(0).toUpperCase();
+	var valorMayusc = primeraLetraMayusc + valor.substr(1,valor.length);
+	$(this).val(valorMayusc);
+}
+var soloLetras = function(evento){
+	var ascii = evento.keyCode;
+	if ((ascii<97 || ascii>122) && (ascii<65 || ascii>90) && ascii!=45 && ascii!=241 && ascii!=209 && ascii!=32 && ascii!=225 && ascii!=233 && ascii!=237 && ascii!=243 && ascii!=250 && ascii!=193 && ascii!=201 && ascii!=205 && ascii!=211 && ascii!=218 && ascii!=91){
+		return false;
+	}
+	else{
+		return true;
+	}
+}
+var maximoDatos = function(){
+	var nombre = $(".input-datos").eq(0).val();
+	var apellido = $(".input-datos").eq(1).val();
+	var nombreApellido = nombre+apellido;
+	var cuadradoNegro = $("#cuadrado-negro");
+	if(nombreApellido.length>=20){
+		cuadradoNegro.text("Ha excedido el máx de caracteres (20 máx)");
+		cuadradoNegro.removeClass("ocultar");
+		$("#input-correo").focus();
+		setTimeout(function(){ cuadradoNegro.addClass("ocultar"); }, 3000)
+	}
+}
+var validarCorreo = function(){
+	var regexCorreo = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+	var cuadradoNegro = $("#cuadrado-negro");
+	var nombre = $(".input-datos").eq(0).val().length;
+	var apellido = $(".input-datos").eq(1).val().length;
+	var correo = $("#input-correo").val().length;
+	var validacionCorreo = $("#input-correo").val().match(regexCorreo);
+	if(validacionCorreo){
+		$("#registrarse").attr("href", "x.html");
+	}
+	else if(!validacionCorreo){
+		$("#registrarse").removeAttr("href");
+		cuadradoNegro.text("Formato de correo inválido");
+		cuadradoNegro.removeClass("ocultar");
+		setTimeout(function(){ cuadradoNegro.addClass("ocultar"); }, 3000);
+	}
+	if(correo<5){
+		cuadradoNegro.text("El correo debe tener como mínimo 5 caracteres");
+		cuadradoNegro.removeClass("ocultar");
+		setTimeout(function(){ cuadradoNegro.addClass("ocultar"); }, 3000);
+	}
+	if(correo>=50){
+		cuadradoNegro.text("El correo debe tener como máximo 50 caracteres");
+		cuadradoNegro.removeClass("ocultar");
+		setTimeout(function(){ cuadradoNegro.addClass("ocultar"); }, 3000);
+	}
+	if(correo==0){
+		cuadradoNegro.text("Ingresa tu correo");
+		cuadradoNegro.removeClass("ocultar");
+		setTimeout(function(){ cuadradoNegro.addClass("ocultar"); }, 3000);
+	}
+
+	if(nombre==0){
+		cuadradoNegro.text("Ingresa tu nombre");
+		cuadradoNegro.removeClass("ocultar");
+		setTimeout(function(){ cuadradoNegro.addClass("ocultar"); }, 3000);
+	}
+	if(apellido==0){
+		cuadradoNegro.text("Ingresa tu apellido");
+		cuadradoNegro.removeClass("ocultar");
+		setTimeout(function(){ cuadradoNegro.addClass("ocultar"); }, 3000);
+	}
+	if(correo==0){
+		cuadradoNegro.text("Ingresa tu correo");
+		cuadradoNegro.removeClass("ocultar");
+		setTimeout(function(){ cuadradoNegro.addClass("ocultar"); }, 3000);
+	}
+	if(apellido==0 && correo==0){
+		cuadradoNegro.text("Ingresa tu apellido y correo");
+		cuadradoNegro.removeClass("ocultar");
+		setTimeout(function(){ cuadradoNegro.addClass("ocultar"); }, 3000);
+	}
+	if(nombre==0 && correo==0){
+		cuadradoNegro.text("Ingresa tu nombre y correo");
+		cuadradoNegro.removeClass("ocultar");
+		setTimeout(function(){ cuadradoNegro.addClass("ocultar"); }, 3000);
+	}
+	if(apellido==0 && nombre==0){
+		cuadradoNegro.text("Ingresa tu nombre y apellido");
+		cuadradoNegro.removeClass("ocultar");
+		setTimeout(function(){ cuadradoNegro.addClass("ocultar"); }, 3000);
+	}
+	if(apellido==0 && nombre==0 && correo==0){
+		cuadradoNegro.text("Ingresa tu datos");
+		cuadradoNegro.removeClass("ocultar");
+		setTimeout(function(){ cuadradoNegro.addClass("ocultar"); }, 3000);
+	}
+}
+var cargar = function(){
+	$("#input-celular").focus();
+	$("#input-celular").keypress(onKeypress);
+	$("#obtener-codigo").click(cantDigCelular);
+	$("#num").text(window.localStorage.getItem("celular"));
+	$("#obtener-codigo").click(generarCodigo);
+	$(".input-codigo").eq(0).focus();
+	$(".input-codigo").keyup(onkeyupCodigo);
+	$(".input-codigo").keydown(onKeydownCodigo);
+	$("#reenviar-codigo").click(generarCodigo2);
+	$("#codigo-comprobado").click(comprobarCodigo);
+	$(".input-datos").eq(0).focus();
+	$(".input-datos").blur(mayusculas);
+	$(".input-datos").keypress(soloLetras);
+	$(".input-datos").keydown(maximoDatos);
+	$("#registrarse").click(validarCorreo);
+}
+$(document).ready(cargar);
