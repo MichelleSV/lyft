@@ -10,7 +10,21 @@
 		<link rel="stylesheet" href="css/main.css">
 	</head>
 	<body>
+		<div class="ocultar fondo-negro"></div>
+		<div class="ocultar cuenta"></div>
 		<div id="map"></div>
+		<a><img src="img/user.png" id="usuario"></a>
+		<button class="glyphicon glyphicon-star estrella"></button>
+		<img class="logo-negro" src="img/lyft-negro.png">
+<!--		<div class="input-group direccion">
+			<div id="direccion"><span class="ubicacion-icono glyphicon glyphicon-map-marker"></span></div>
+		</div>-->
+		<div class="input-group direccion">
+			<div class="input-group-btn">
+				<button type="button" class="btn btn-default ubicacion-icono glyphicon glyphicon-map-marker"></button>
+			</div>
+			<div id="direccion" class="form-control"></div>
+		</div>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 		<script src="js/bootstrap.js"></script>
 		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCTaOa4Xk8WBSq5zXtC5C84rhF6YSRki6k" async defer></script>

@@ -122,7 +122,7 @@
 	white-space: pre-line;
 	background-color: black;
 	position: absolute;
-	top: 55%;
+	top: 50%;
 	left: 19%;
 	text-align: center;
 	color: white;
@@ -136,4 +136,65 @@
 #map{
 	width: 100%;
 	height: 100vh;
+}
+.logo-negro{
+	opacity: 0.6;
+	position: absolute;
+	top: 20px;
+	z-index: 1;
+	width: 15%;
+	height: auto;
+	margin: 0 auto;
+	left: 42%;
+}
+.direccion{
+	position: absolute;
+	bottom: 100px;
+	padding: 0;
+}
+#usuario{
+	width: 15%;
+	position: absolute;
+	top: 20px;
+	z-index: 1;
+	border-radius: 50%;
+	left: 10%;
+	opacity: 0.6;
+}
+.estrella{
+	position: absolute;
+	top: 20px;
+	z-index: 1;
+	padding: 10px;
+	font-size: 1.3em;
+	opacity: 0.6;
+	border: 0;
+	background-color: black;
+	color: white;
+	border-radius: 50%;
+	right: 5%;
+}
+.fondo-negro{
+	width: 100%;
+	height: 100vh;
+	background-color: black;
+	opacity: 0.6;
+	text-align: left;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	bottom: 0;
+	right: 0;
+	z-index: 1;
+	overflow: auto;
+}
+.cuenta{
+	width: 65%;
+	height: 100vh;
+	background-color: white;
+	z-index: 2;
+	position: absolute;
+}
+.ocultar{
+	display: none;
 }
