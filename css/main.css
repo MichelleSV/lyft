@@ -198,3 +198,8 @@
 .ocultar{
 	display: none;
 }
+.background{
+	width: 100%;
+	height: auto;
+	background-size: 100% auto;
+}
