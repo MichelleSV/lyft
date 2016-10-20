@@ -21,7 +21,7 @@
 					<div class="white-text email"></div>
 				</div>
 			</li>
-			<li class="opciones-slide"><a href="#" class="link-slide"><span class="glyphicon glyphicon-home icono-slide"></span>Inicio</a></li>
+			<li class="opciones-slide"><i class="glyphicon glyphicon-home icono-slide"></i><a href="#" class="link-slide">Inicio</a></li>
 			<li class="opciones-slide"><a href="#" class="link-slide"><span class="glyphicon glyphicon-heart icono-slide"></span>Viajes gratis</a></li>
 			<li class="opciones-slide"><a href="#" class="link-slide"><span class="glyphicon glyphicon-map-marker icono-slide"></span>Historial</a></li>
 			<li class="opciones-slide"><a href="#" class="link-slide"><span class="glyphicon glyphicon-credit-card icono-slide"></span>Forma de pago</a></li>
@@ -32,10 +32,11 @@
 		<img class="logo-negro" src="img/lyft-negro.png">
 		<div class="input-group direccion">
 			<div class="input-group-btn">
-				<button type="button" class="btn btn-default ubicacion-icono glyphicon glyphicon-map-marker"></button>
+				<button id="buscar" type="button" class="btn btn-default ubicacion-icono glyphicon glyphicon-map-marker"></button>
 			</div>
-			<div id="direccion" class="form-control"></div>
+			<textarea id="direccion-cambiar" class="form-control"></textarea>
 		</div>
+		<div id="direccion"></div>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
 		<script src="js/bootstrap.js"></script>

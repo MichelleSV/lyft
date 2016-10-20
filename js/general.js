@@ -107,7 +107,7 @@ var maximoApellido = function(){
 
 }
 var validarCorreo = function(){
-	var regexCorreo = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+	var regexCorreo = (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/);
 	var cuadradoNegro = $("#cuadrado-negro");
 	var nombre = $(".input-datos").eq(0).val().length;
 	var apellido = $(".input-datos").eq(1).val().length;

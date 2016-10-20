@@ -10,15 +10,21 @@ var cargarPagina = function() {
 	if (navigator.geolocation) {
 		navigator.geolocation.getCurrentPosition(funcionExito, funcionError);
 	}
+	$("#buscar").click(buscar);
 };
+
+var map;
 var funcionExito = function(posicion) {
 	var lat = posicion.coords.latitude;
 	var lon = posicion.coords.longitude;
-	var map = new GMaps({
+	map = new GMaps({
 		div: "#map",
 		lat: lat,
 		lng: lon,
-		zoom:16
+		zoom:16,
+		mapTypeControl:false,
+		zoomControl: false,
+		streetViewControl:false
 	});
 	var geocoder = new google.maps.Geocoder;
 	var infowindow = new google.maps.InfoWindow;
@@ -30,7 +36,6 @@ var funcionExito = function(posicion) {
 		lng: lon,
 		title:"Estás aquí"
 	});
-
 	var content = $("#direccion");
 	var dir = "";
 	var latlng = new google.maps.LatLng(lat, lon);
@@ -47,10 +52,29 @@ var funcionExito = function(posicion) {
 		else{
 			dir = "El Servicio de Codificación Geográfica ha fallado con el siguiente error: " + estado;
 		}
-		content.text(dir);
+		window.localStorage.setItem("direccion",dir)
+		content.text(window.localStorage.getItem("direccion"));
 	});
 }
 var funcionError = function (error) {
-	alert("Tenemos un problema cin encontrar tu ubicación");
+	alert("Tenemos un problema con encontrar tu ubicación");
+}
+var buscar= function(e){
+	e.preventDefault();
+	GMaps.geocode({
+		address: $('#direccion-cambiar').val(),
+		callback: function(results, status) {
+			if (status == 'OK') {
+				var latlng = results[0].geometry.location;
+				map.setCenter(latlng.lat(), latlng.lng());
+				map.addMarker({
+				lat: latlng.lat(),
+				lng: latlng.lng()
+				});
+			}
+		}
+	});
+	$('#buscar').val("");
 }
 $(document).ready(cargarPagina);
+

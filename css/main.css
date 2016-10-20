@@ -151,10 +151,27 @@
 	margin: 0 auto;
 	left: 42%;
 }
+#direccion{
+	height: auto;
+	position: absolute;
+	bottom: 35px;
+	border-radius: 5px;
+	word-wrap: break-word;
+	white-space: pre-line;
+	text-align: center;
+	background-color: deeppink;
+	color: white;
+	text-align: center;
+	padding: 10px;
+	width: 70%;
+	margin: 0 15%;
+}
 .direccion{
 	position: absolute;
 	bottom: 100px;
 	padding: 0;
+	width: 70%;
+	margin: 0 15%;
 }
 #usuario{
 	width: 15%;
@@ -213,6 +230,7 @@
 }
 .icono-slide{
 	margin-right: 15px;
+	padding: 5% 0;
 }
 .icono-slide-editar{
 	margin-right: 30px;
