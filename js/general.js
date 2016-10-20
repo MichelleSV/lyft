@@ -115,6 +115,12 @@ var validarCorreo = function(){
 	var validacionCorreo = $("#input-correo").val().match(regexCorreo);
 	if(validacionCorreo){
 		$("#registrarse").attr("href", "ubicacion.html");
+		window.localStorage.setItem("nombre",$(".input-datos").eq(0).val());
+		window.localStorage.setItem("apellido",$(".input-datos").eq(1).val());
+		window.localStorage.setItem("correo",$("#input-correo").val());
+		var diaJoin = new Date();
+		var meses = ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
+		window.localStorage.setItem("join",diaJoin.getDate()+ " " +meses[diaJoin.getMonth()]+ " " +diaJoin.getFullYear());
 	}
 	else if(!validacionCorreo){
 		$("#registrarse").removeAttr("href");
@@ -191,5 +197,7 @@ var cargar = function(){
 	$(".input-datos").eq(0).keydown(maximoNombre);
 	$(".input-datos").eq(1).keydown(maximoApellido);
 	$("#registrarse").click(validarCorreo);
+	$("#usuario-editable").text(window.localStorage.getItem("nombre"));
+	$("#join").text(window.localStorage.getItem("join"));
 }
 $(document).ready(cargar);

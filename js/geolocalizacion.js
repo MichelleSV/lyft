@@ -1,5 +1,7 @@
 var cargarPagina = function() {
-	$('.button-collapse').sideNav({
+	$(".white-text").eq(0).text(window.localStorage.getItem("nombre")+" "+window.localStorage.getItem("apellido"));
+	$(".white-text").eq(1).text(window.localStorage.getItem("correo"));
+	$(".button-collapse").sideNav({
 	  menuWidth: 250,
 	  edge: 'left',
 	  closeOnClick: true
@@ -49,11 +51,6 @@ var funcionExito = function(posicion) {
 	});
 }
 var funcionError = function (error) {
-	console.log(error);
-}
-var cargar = function(){
-	if (navigator.geolocation){
-		navigator.geolocation.getCurrentPosition(exitoUbicacion,errorUbicaion)
-	}
+	alert("Tenemos un problema cin encontrar tu ubicación");
 }
 $(document).ready(cargarPagina);
