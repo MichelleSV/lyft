@@ -2,21 +2,20 @@ var cargarPagina = function() {
 	$(".white-text").eq(0).text(window.localStorage.getItem("nombre")+" "+window.localStorage.getItem("apellido"));
 	$(".white-text").eq(1).text(window.localStorage.getItem("correo"));
 	$(".button-collapse").sideNav({
-	  menuWidth: 250,
-	  edge: 'left',
-	  closeOnClick: true
+		menuWidth: 250,
+		edge: 'left',
+		closeOnClick: true
 	}
-  );
+								 );
 	if (navigator.geolocation) {
 		navigator.geolocation.getCurrentPosition(funcionExito, funcionError);
 	}
 	$("#buscar").click(buscar);
 };
-
-var map;
+var map,lat,lon;
 var funcionExito = function(posicion) {
-	var lat = posicion.coords.latitude;
-	var lon = posicion.coords.longitude;
+	lat = posicion.coords.latitude;
+	lon = posicion.coords.longitude;
 	map = new GMaps({
 		div: "#map",
 		lat: lat,
@@ -29,7 +28,7 @@ var funcionExito = function(posicion) {
 	var geocoder = new google.maps.Geocoder;
 	var infowindow = new google.maps.InfoWindow;
 	$("#submit").on('click', function() {
-	geocodeLatLng(geocoder, map, infowindow);
+		geocodeLatLng(geocoder, map, infowindow);
 	});
 	map.addMarker({
 		lat: lat,
@@ -55,6 +54,7 @@ var funcionExito = function(posicion) {
 		window.localStorage.setItem("direccion",dir)
 		content.text(window.localStorage.getItem("direccion"));
 	});
+
 }
 var funcionError = function (error) {
 	alert("Tenemos un problema con encontrar tu ubicación");
@@ -68,8 +68,16 @@ var buscar= function(e){
 				var latlng = results[0].geometry.location;
 				map.setCenter(latlng.lat(), latlng.lng());
 				map.addMarker({
-				lat: latlng.lat(),
-				lng: latlng.lng()
+					lat: latlng.lat(),
+					lng: latlng.lng()
+				});
+				map.drawRoute({
+					origin: [lat,lon],
+					destination: [latlng.lat(), latlng.lng()],
+					travelMode: 'driving',
+					strokeColor: '#131540',
+					strokeOpacity: 0.6,
+					strokeWeight: 6
 				});
 			}
 		}

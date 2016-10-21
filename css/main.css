@@ -65,7 +65,7 @@
 	border-left: 0;
 	padding: 0 0 0 10px;
 }
-#input-celular:focus{
+.form-control:focus{
 	outline: none !important;
 	-webkit-box-shadow:none;
 	box-shadow: none;
@@ -115,6 +115,7 @@
 }
 .input-datos:focus{
 	border: 0;
+	outline: transparent;
 }
 .input-rdatos{
 	margin-bottom: 20px;
@@ -245,6 +246,10 @@
 .row-editar{
 	padding: 20px 35px;
 	font-size: 18px;
+}
+#buscar{
+	height: 44px;
+	padding: 0 15px;
 }
 #join{
 	background-color: grey;
