@@ -12,6 +12,7 @@ var cargarPagina = function() {
 	}
 	$("#buscar").click(buscar);
 };
+
 var map,lat,lon;
 var funcionExito = function(posicion) {
 	lat = posicion.coords.latitude;
@@ -20,20 +21,19 @@ var funcionExito = function(posicion) {
 		div: "#map",
 		lat: lat,
 		lng: lon,
-		zoom:16,
+		zoom:15,
 		mapTypeControl:false,
 		zoomControl: false,
 		streetViewControl:false
 	});
 	var geocoder = new google.maps.Geocoder;
-	var infowindow = new google.maps.InfoWindow;
+/*	var infowindow = new google.maps.InfoWindow;
 	$("#submit").on('click', function() {
 		geocodeLatLng(geocoder, map, infowindow);
-	});
+	});*/
 	map.addMarker({
 		lat: lat,
 		lng: lon,
-		title:"Estás aquí"
 	});
 	var content = $("#direccion");
 	var dir = "";
@@ -66,7 +66,8 @@ var buscar= function(e){
 		callback: function(results, status) {
 			if (status == 'OK') {
 				var latlng = results[0].geometry.location;
-				map.setCenter(latlng.lat(), latlng.lng());
+				map.zoomOut(2);
+				map.setCenter(lat,latlng.lng());
 				map.addMarker({
 					lat: latlng.lat(),
 					lng: latlng.lng()
