@@ -175,13 +175,14 @@
 	margin: 0 15%;
 }
 #usuario{
-	width: 15%;
+	width: 100px;
+	height: 100px;
 	position: absolute;
 	top: 20px;
 	z-index: 1;
 	border-radius: 50%;
-	left: 10%;
-	opacity: 0.6;
+	left: 5%;
+	opacity: 0.8;
 }
 .estrella{
 	position: absolute;
@@ -237,7 +238,7 @@
 	margin-right: 30px;
 }
 .usuario-editable{
-	width: 30%;
+	width: 50%;
 }
 .fondo-usuario-editable{
 	background-color: deeppink;

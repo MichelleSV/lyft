@@ -9,14 +9,14 @@ var onKeypress = function(evento){
 var cantDigCelular = function(){
 	var cuadradoNegro = $("#cuadrado-negro");
 	var longitud = $("#input-celular").val().length;
-		if (longitud == 9) {
-			$("#obtener-codigo").attr("href", "comprobacion-codigo.html");
-		} else {
-			cuadradoNegro.text("El celular debe tener 9 dígitos");
-			cuadradoNegro.removeClass("ocultar");
-			setTimeout(function(){ cuadradoNegro.addClass("ocultar"); }, 3000);
-			$("#obtener-codigo").removeAttr("href");
-		}
+	if (longitud == 9) {
+		$("#obtener-codigo").attr("href", "comprobacion-codigo.html");
+	} else {
+		cuadradoNegro.text("El celular debe tener 9 dígitos");
+		cuadradoNegro.removeClass("ocultar");
+		setTimeout(function(){ cuadradoNegro.addClass("ocultar"); }, 3000);
+		$("#obtener-codigo").removeAttr("href");
+	}
 }
 var generarCodigo = function(){
 	var longitud = $("#input-celular").val().length;
@@ -33,15 +33,15 @@ var comprobarCodigo = function(){
 	var codigo = codigo1 + codigo2 + codigo3;
 	var cuadradoNegro = $("#cuadrado-negro");
 	if(codigo == window.localStorage.getItem("numeroAleatorio")){
-			$("#codigo-comprobado").attr("href", "registro-datos.html");
-		} else {
-			$("#codigo-comprobado").removeAttr("href");
-			cuadradoNegro.text("Código erróneo");
-			cuadradoNegro.removeClass("ocultar");
-			$(".input-codigo").val("");
-			$(".input-codigo").eq(0).focus();
-			setTimeout(function(){ cuadradoNegro.addClass("ocultar"); }, 3000)
-		}
+		$("#codigo-comprobado").attr("href", "registro-datos.html");
+	} else {
+		$("#codigo-comprobado").removeAttr("href");
+		cuadradoNegro.text("Código erróneo");
+		cuadradoNegro.removeClass("ocultar");
+		$(".input-codigo").val("");
+		$(".input-codigo").eq(0).focus();
+		setTimeout(function(){ cuadradoNegro.addClass("ocultar"); }, 3000)
+	}
 }
 var onKeydownCodigo = function(evento){
 	var ascii = evento.keyCode;
@@ -180,6 +180,32 @@ var validarCorreo = function(){
 		setTimeout(function(){ cuadradoNegro.addClass("ocultar"); }, 3000);
 	}
 }
+
+function previewFile() {
+	var preview = document.querySelector('img');
+	var file    = document.querySelector('input[type=file]').files[0];
+	var reader  = new FileReader();
+	reader.onload = function () {
+		preview.src = reader.result;
+		var listo = $("#foto").attr("src");
+		window.localStorage.setItem("fotoGuardado", listo);
+	}
+	if (file) {
+		reader.readAsDataURL(file);
+	} else {
+		preview.src = "";
+	}
+}
+$("#elegirFoto").change(previewFile);
+	function mostrarCambios(){
+		$("#nameMostrar").text(window.localStorage.getItem("nombreGuardado"));
+		$("#casaMostrar").text(window.localStorage.getItem("casaGuardado"));
+		$("#musicaMostrar").text(window.localStorage.getItem("musicaGuardado"));
+		$("#hobbieMostrar").text(window.localStorage.getItem("hobbieGuardado"));
+		$(".user2").attr("src" , window.localStorage.getItem("fotoGuardado"));
+		$(".user2").addClass("user2");
+	}
+$("editar-perfil.html").ready(mostrarCambios);
 var cargar = function(){
 	$("#input-celular").focus();
 	$("#input-celular").keypress(onKeypress);
@@ -199,5 +225,7 @@ var cargar = function(){
 	$("#registrarse").click(validarCorreo);
 	$("#usuario-editable").text(window.localStorage.getItem("nombre"));
 	$("#join").text(window.localStorage.getItem("join"));
+	$(".circle").attr("src" , window.localStorage.getItem("fotoGuardado"));
+	$("#usuario").attr("src" , window.localStorage.getItem("fotoGuardado"));
 }
 $(document).ready(cargar);

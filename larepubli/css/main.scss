@@ -1,0 +1,368 @@
+@import "_variables";
+@import "_mixin";
+
+// --------------  publicidad  ---------------
+header{
+	background-color: #F4F5F7;
+	div.publicidad1{
+		@include star-padding(10px 0 10px 0);
+		border-bottom: 1px solid $color-nav-plomo;
+	}
+	a{
+		display: inline-block;
+		width: 100%;
+	}
+	img{
+		width: 100%;
+		@include star-margin(0 0 12px 0);
+	}
+	.menuBanner{
+		div{
+			div{
+				div a{
+					@include star-font-family(arial, 11px, bold);
+					color: $color-menu-banner;
+				}
+			}
+		}
+		div{
+			.redes{
+				@include star-font-family(arial, 15px, bold);
+				display: inline !important;
+				margin-left: 7%;
+			}
+			.fa-facebook{
+				color: $color-fb;
+			}
+			.fa-twitter{
+				color: $color-twitter;
+			}
+			.fa-google-plus{
+				color: #CA4B5B;
+			}
+			.fa-envelope{
+				color: $color-correo;
+			}
+			.fa-rss{
+				color: #FF8000;
+			}
+		}
+		div{
+			div{
+				button{
+					background-color: $color-btn-suscribete;
+					@include star-font-family(arial, 11px, bold);
+					color: #ffffff;
+					border: none;
+					@include star-border-radius(5px);
+				}
+			}
+			div{
+				input{
+					@include star-font-family(arial, 11px, bold);
+					background-color: transparent;
+					display: inline !important;
+					border: 1px solid transparent;
+					width: 60px;
+				}
+			}
+		}
+	}
+}
+section.logo{
+	@include star-margin(30px 0 10px 0);
+	div{
+		.img-logo{
+			@include star-margin(20px 0 20px 0px);
+		}
+		.cuadro-borde{
+			// position: relative;
+			@include star-padding(40px 0 10px 15px);
+			border: 1px solid gray;
+			@include star-font-family(arial, 11px, bold);
+			// @include star-margin(0 0 30px 0);
+		}
+		.tema-dia{
+			border-bottom: 3px solid $color-guinda;
+			.domingo{
+				position: absolute;
+				top: -15%;
+				background-color: $color-guinda;
+				@include star-padding(10px 10px 0 10px);
+				color: #ffffff;
+				right: 38%;
+			}
+		}
+		.bloque_editorial_text{
+			width: 80%;
+			position: relative;
+			@include star-padding(20px 0 10px 10px);
+			@include star-border-radius(5px);
+			background-color: #2C3238;
+			position: absolute;
+		}
+		.nota-autor{
+			width: 80%;
+			position: absolute;
+			right: 4%;
+			@include star-padding(16px 0 10px 0px);
+			background-color: #ffffff;
+			@include star-border-radius(5px);
+			.img-nota-autor{
+				// display: inline !important;
+				position: absolute;
+				right: -2%;
+				top: -1%;
+				img{
+					width: 115%;
+				}
+			}
+		}
+	}
+}
+
+//NAVBAR
+.navbar-temacentral{
+	.boton{
+		background-color:$color-nav-rojo;
+		color: white;
+		border: none;
+		margin:2% 0%;
+		padding: 1%;
+		@include star-font-family(arial, 97%, bold);
+		&:hover{
+			background-color: blue;
+		}
+	}
+	.boton-radio-left{
+		@include star-border-radius-boton;
+	}
+	.boton-radio-right{
+		@include star-border-radius-boton($orientacion:right);
+	}
+}
+.navbar-temasdeldia{
+	.titulo{
+		background-color: $color-nav;
+		color: white;
+		font-size: 85%;
+		text-align: center;
+		padding: 1% 2% 1% 2%;
+		display: inline-block;
+	}
+	.boton-radio-left{
+		@include star-border-radius-boton;
+	}
+	.subtitulos{
+		background-color: $color-nav-plomo;
+		padding: 1% 2% 1% 4%;
+		display: inline
+	}
+	.boton-radio-right{
+		@include star-border-radius-boton($orientacion:right);
+	}
+	a{
+		padding: 0% 1% 1% 1%;
+		display: inline-table;
+		color: gray;
+	}
+}
+
+//FORMULARIO
+.form{
+	h1{
+		@include star-font-family($font-size:50px,$font-weight:lighter);
+		@include star-text;
+	}
+	p{
+		@include star-padding($padding:20px 0);
+		@include star-text($text-align:left);
+		@include star-font-family($font-family: $family-letra , $font-size:17px, $font-weight:normal)
+			}
+	.container-especial{
+		@include star-padding($padding:0 25%);
+		@include star-margin($margin:0 auto);
+		form{
+			div{
+				input,input:focus{
+					background-color: $color-input;
+					border: 1px solid #9A9A9A;
+					border-bottom: 0;
+					border-right: 0;
+					outline: 0;
+					box-shadow: $none;
+					@include star-margin($margin:30px 0 5px 0);
+					@include star-padding($padding:20px 15px);
+					@include star-font-family($font-family:$family-letra,$font-size:18px,$font-weight:lighter);
+				}
+				.opcional{
+					@include star-padding;
+				}
+			}
+			textarea{
+				background-color: $color-input;
+				@include star-border($border:0);
+				border-top: 1px solid #9A9A9A;
+				outline: 0;
+				@include star-padding($padding:15px);
+				@include star-size($width:100%,$height:auto);
+				@include star-font-family($font-family:$family-letra,$font-size:18px,$font-weight:lighter);
+				@include star-margin($margin:0 0 25px 0)
+					}
+			button{
+				background-color: $color-boton;
+				color: white;
+				@include star-padding($padding:10px 80px);
+				@include star-margin($margin:0 auto 50px auto);
+				display: inherit;
+			}
+			h3{
+				@include star-padding($padding: 30px 0 0 0);
+			}
+			ul{
+				@include star-padding($padding:0 0 30px 0);
+				li{
+					list-style: none;
+					line-height: 28px;
+					span.text-posicion{
+						float: right;
+					}
+				}
+			}
+		}
+	}
+}
+*{
+	@include star-padding;
+	@include star-margin;
+}
+
+//FOOTER
+footer{
+	.desktop{
+		@include star-padding($padding-footer);
+		background: $color-footer;
+		span{
+			display: $block;
+			cursor: pointer;
+			&:hover{
+				color: #AEA3A3;
+			}
+		}
+		.enlaces-footer{
+			@include margin-padding($padding-footer, $margin-footer);
+			border-bottom: $border-left-right;
+			img{
+				margin-top: 100px;
+			}
+		}
+		li{
+			display: $inline-block;
+			border-right: 2px solid #AEA3A3;
+			padding-right: $padding-footer - 1.5;
+		}
+		li:last-child{
+			border-right:none;
+		}
+		.enlaces-border-row {
+			border-left: $border-left-right;
+			padding-left: $padding-footer * 2;
+		}
+	}
+	.tablet{
+		display: $none;
+	}
+}
+
+//MEDIA 769px
+@media (max-width:769px){
+	.nota-autor{
+		width: 89.5% !important;
+	}
+	.navbar-temasdeldia{
+		margin-top: 100px;
+		margin-left: 1.8em;
+	}
+	.form{
+		@include star-font-family($font-family: $family-letra  , $font-size:16px, $font-weight:normal);
+
+		.container-especial{
+			@include star-padding($padding:0 12%);
+			ul{
+				@include star-font-family($font-family:$family-letra,$font-size:16px,$font-weight:lighter);
+			}
+		}
+	}
+	.desktop{
+		display: $none;
+	}
+	.tablet{
+		display: $block;
+		background: $color-negro;
+		color: $color-blanco;
+		@include star-padding($padding:3%);
+		h2{
+			@include star-font-family($font-family: arial , $font-size:15px, $font-weight:normal);
+		}
+		h4{
+			@include star-font-family($font-family: arial , $font-size:9px, $font-weight:normal);
+		}
+	}
+}
+
+//MEDIA 375px
+@media (max-width:375px){
+	header{
+		.menuBanner{
+			div{
+			.redes{
+				@include star-font-family(arial, 10px, normal);
+			}
+				div{
+					div a{
+						@include star-font-family(arial, 10px, bold);
+						color: $color-menu-banner;
+					}
+				}
+			}
+		}
+		.col-md-4:nth-child(2),.col-md-4:nth-child(3){
+			margin-top: 10px;
+		}
+	}
+	section .cuadro-borde.nota-autor{
+			width: 83% !important;
+		}
+	.form{
+		h1{
+			@include star-font-family($font-family: $family-letra , $font-size:45px, $font-weight:normal);
+		}
+		p{
+			line-height: 23px;
+			@include star-padding($padding:25px 1px);
+			@include star-font-family($font-family:$family-letra , $font-size:16px, $font-weight:normal);
+		}
+		.container-especial{
+			@include star-padding($padding:0 3%);
+		}
+		.opcional{
+			@include star-padding;
+		}
+		.text-posicion{
+			float: none !important;
+		}
+	}
+	.navbar-temasdeldia{
+		text-align: center;
+		margin-left: 0;
+		.subtitulos{
+			padding:1% 4% 1% 3%;
+			a{
+				padding:0%;
+			}
+			.ocultar, span{
+				display: none;
+			}
+		}
+	}
+}
