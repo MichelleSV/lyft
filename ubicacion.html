@@ -9,34 +9,47 @@
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
 		<link rel="stylesheet" href="css/bootstrap.css">
 		<link rel="stylesheet" href="css/main.css">
+		<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
 	</head>
 	<body>
 		<ul id="slide-out" class="side-nav">
 			<li>
 				<div class="userView">
 					<img class="background" src="img/paris.jpg">
-					<img class="circle" src="img/user.png">
+					<img class="circle">
 					<a id="editar-perfil" href="editar-perfil.html">Edita tu perfil</a>
 					<div class="white-text name"></div>
 					<div class="white-text email"></div>
 				</div>
 			</li>
-			<li class="opciones-slide"><i class="glyphicon glyphicon-home icono-slide"></i><a href="#" class="link-slide">Inicio</a></li>
-			<li class="opciones-slide"><a href="#" class="link-slide"><span class="glyphicon glyphicon-heart icono-slide"></span>Viajes gratis</a></li>
-			<li class="opciones-slide"><a href="#" class="link-slide"><span class="glyphicon glyphicon-map-marker icono-slide"></span>Historial</a></li>
-			<li class="opciones-slide"><a href="#" class="link-slide"><span class="glyphicon glyphicon-credit-card icono-slide"></span>Forma de pago</a></li>
+			<li class="opciones-slide">
+				<i class="glyphicon glyphicon-home icono-slide"></i>
+				<a href="#" class="link-slide">Home</a>
+			</li>
+			<li class="opciones-slide">
+				<i class="glyphicon glyphicon-heart icono-slide"></i>
+				<a href="#" class="link-slide">Free Rides</a>
+			</li>
+			<li class="opciones-slide">
+				<i class="glyphicon glyphicon-map-marker icono-slide"></i>
+				<a href="#" class="link-slide">Ride history</a>
+			</li>
+			<li class="opciones-slide">
+				<i class="glyphicon glyphicon-credit-card icono-slide"></i>
+				<a href="#" class="link-slide">Payment</a>
+			</li>
 		</ul>
 		<a href="#" data-activates="slide-out" class="button-collapse"><img src="img/user.png" id="usuario"></a>
 		<div id="map"></div>
-		<button class="glyphicon glyphicon-star estrella"></button>
+		<i class="glyphicon glyphicon-star estrella"></i>
 		<img class="logo-negro" src="img/lyft-negro.png">
+		<div id="direccion"></div>
 		<div class="input-group direccion">
 			<textarea id="direccion-cambiar" class="form-control text-center"></textarea>
 			<div class="input-group-btn">
-				<button id="buscar" type="button" class="btn btn-default ubicacion-icono glyphicon glyphicon-map-marker"></button>
-			</div>
+				<i id="buscar" class="btn btn-default ubicacion-icono glyphicon glyphicon-map-marker"></button>
+			</i>
 		</div>
-		<div id="direccion"></div>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
 		<script src="js/bootstrap.js"></script>

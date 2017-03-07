@@ -1,3 +1,9 @@
+var loadImg = function(){
+	setTimeout(function(){
+		$(".loader-imagen").addClass("ocultar")
+	},2000);
+}
+$("index.html").ready(loadImg);
 var onKeypress = function(evento){
 	var ascii = evento.keyCode;
 	if((ascii>=48 && ascii<=57) || ascii==37 || ascii==39 || ascii==8){
@@ -112,8 +118,9 @@ var validarCorreo = function(){
 	var nombre = $(".input-datos").eq(0).val().length;
 	var apellido = $(".input-datos").eq(1).val().length;
 	var correo = $("#input-correo").val().length;
+	var checkBox = $("#check").prop("checked");
 	var validacionCorreo = $("#input-correo").val().match(regexCorreo);
-	if(validacionCorreo){
+	if(validacionCorreo && checkBox){
 		$("#registrarse").attr("href", "ubicacion.html");
 		window.localStorage.setItem("nombre",$(".input-datos").eq(0).val());
 		window.localStorage.setItem("apellido",$(".input-datos").eq(1).val());
@@ -122,65 +129,67 @@ var validarCorreo = function(){
 		var meses = ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
 		window.localStorage.setItem("join",diaJoin.getDate()+ " " +meses[diaJoin.getMonth()]+ " " +diaJoin.getFullYear());
 	}
-	else if(!validacionCorreo){
+	else if(!checkBox){
 		$("#registrarse").removeAttr("href");
-		cuadradoNegro.text("Formato de correo inválido");
+		cuadradoNegro.text("Accept the terms and conditions");
+		cuadradoNegro.removeClass("ocultar");
+		setTimeout(function(){ cuadradoNegro.addClass("ocultar"); }, 3000);
+	}else if(!validacionCorreo){
+		$("#registrarse").removeAttr("href");
+		cuadradoNegro.text("Invalid mail format");
 		cuadradoNegro.removeClass("ocultar");
 		setTimeout(function(){ cuadradoNegro.addClass("ocultar"); }, 3000);
 	}
 	if(correo<5){
-		cuadradoNegro.text("El correo debe tener como mínimo 5 caracteres");
+		cuadradoNegro.text("Email must be at least 5 characters");
 		cuadradoNegro.removeClass("ocultar");
 		setTimeout(function(){ cuadradoNegro.addClass("ocultar"); }, 3000);
 	}
 	if(correo>=50){
-		cuadradoNegro.text("El correo debe tener como máximo 50 caracteres");
+		cuadradoNegro.text("Mail must be at most 50 characters");
 		cuadradoNegro.removeClass("ocultar");
 		setTimeout(function(){ cuadradoNegro.addClass("ocultar"); }, 3000);
 	}
 	if(correo==0){
-		cuadradoNegro.text("Ingresa tu correo");
+		cuadradoNegro.text("Enter your email");
 		cuadradoNegro.removeClass("ocultar");
 		setTimeout(function(){ cuadradoNegro.addClass("ocultar"); }, 3000);
 	}
 
 	if(nombre==0){
-		cuadradoNegro.text("Ingresa tu nombre");
+		cuadradoNegro.text("Enter your name");
 		cuadradoNegro.removeClass("ocultar");
 		setTimeout(function(){ cuadradoNegro.addClass("ocultar"); }, 3000);
 	}
 	if(apellido==0){
-		cuadradoNegro.text("Ingresa tu apellido");
-		cuadradoNegro.removeClass("ocultar");
-		setTimeout(function(){ cuadradoNegro.addClass("ocultar"); }, 3000);
-	}
-	if(correo==0){
-		cuadradoNegro.text("Ingresa tu correo");
+		cuadradoNegro.text("Enter your Last name");
 		cuadradoNegro.removeClass("ocultar");
 		setTimeout(function(){ cuadradoNegro.addClass("ocultar"); }, 3000);
 	}
 	if(apellido==0 && correo==0){
-		cuadradoNegro.text("Ingresa tu apellido y correo");
+		cuadradoNegro.text("Enter your last name and email");
 		cuadradoNegro.removeClass("ocultar");
 		setTimeout(function(){ cuadradoNegro.addClass("ocultar"); }, 3000);
 	}
 	if(nombre==0 && correo==0){
-		cuadradoNegro.text("Ingresa tu nombre y correo");
+		cuadradoNegro.text("Enter your name and email");
 		cuadradoNegro.removeClass("ocultar");
 		setTimeout(function(){ cuadradoNegro.addClass("ocultar"); }, 3000);
 	}
 	if(apellido==0 && nombre==0){
-		cuadradoNegro.text("Ingresa tu nombre y apellido");
+		cuadradoNegro.text("Enter your first and last name");
 		cuadradoNegro.removeClass("ocultar");
 		setTimeout(function(){ cuadradoNegro.addClass("ocultar"); }, 3000);
 	}
 	if(apellido==0 && nombre==0 && correo==0){
-		cuadradoNegro.text("Ingresa tu datos");
+		cuadradoNegro.text("Enter your details");
 		cuadradoNegro.removeClass("ocultar");
 		setTimeout(function(){ cuadradoNegro.addClass("ocultar"); }, 3000);
 	}
 }
-
+/*	window.localStorage.setItem("homeSave","Add the address of your home");
+	window.localStorage.setItem("workSave","Add the address of your work");
+	window.localStorage.setItem("musicSave","Add your favorite music");*/
 function previewFile() {
 	var preview = document.querySelector('img');
 	var file    = document.querySelector('input[type=file]').files[0];
@@ -196,12 +205,16 @@ function previewFile() {
 		preview.src = "";
 	}
 }
+function saveInputs(){
+	window.localStorage.setItem("homeSave",$("#textHome").val());
+	window.localStorage.setItem("workSave",$("#textWork").val());
+	window.localStorage.setItem("musicSave",$("#textMusic").val());
+}
 $("#elegirFoto").change(previewFile);
 	function mostrarCambios(){
-		$("#nameMostrar").text(window.localStorage.getItem("nombreGuardado"));
-		$("#casaMostrar").text(window.localStorage.getItem("casaGuardado"));
-		$("#musicaMostrar").text(window.localStorage.getItem("musicaGuardado"));
-		$("#hobbieMostrar").text(window.localStorage.getItem("hobbieGuardado"));
+		$("#homeShow").text(window.localStorage.getItem("homeSave"));
+		$("#workShow").text(window.localStorage.getItem("workSave"));
+		$("#musicShow").text(window.localStorage.getItem("musicSave"));
 		$(".user2").attr("src" , window.localStorage.getItem("fotoGuardado"));
 		$(".user2").addClass("user2");
 	}
